@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Create from "./pages/Create";
 import Profile from "./pages/Profile";
 
+import liff from "@line/liff";
 // router and routes
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +25,13 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  useEffect(() => {
+    liff
+      .init({ liffId: "1657798209-XxNjdRla" })
+      .then(() => console.log("liff initialized"))
+      .catch((error) => console.log(error));
+  }, []);
+
   return <RouterProvider router={router} />;
 }
 
